@@ -2,10 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Lottie from 'react-lottie';
 import * as animationDataUp from './LottieAnimations/congratulations.json';  // Up animation
 import * as animationDataDown from './LottieAnimations/sadface.json';      // Down animation
+import * as animationDataRocket from './LottieAnimations/rocket.json';     // Rocket animation
+
+// Import the logo image
+import chatGptLogo from './chatgpt-logo.png';
 
 const App = () => {
   const [status, setStatus] = useState('Checking...');
   const [isUp, setIsUp] = useState(null); // true for up, false for down
+  const [showRocket, setShowRocket] = useState(false); // State for showing rocket animation
 
   useEffect(() => {
     const checkChatGPTStatus = async () => {
@@ -20,13 +25,16 @@ const App = () => {
         if (response.ok) {
           setStatus("ChatGPT is up!");
           setIsUp(true);
+          setShowRocket(true); // Show rocket when ChatGPT is up
         } else {
           setStatus("ChatGPT is down!");
           setIsUp(false);
+          setShowRocket(false); // Hide rocket when ChatGPT is down
         }
       } catch (error) {
         setStatus("ChatGPT is down!");
         setIsUp(false);
+        setShowRocket(false); // Hide rocket when there's an error
       }
     };
 
@@ -52,6 +60,15 @@ const App = () => {
     }
   };
 
+  const rocketOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationDataRocket,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  };
+
   // Refresh page function
   const refreshPage = () => {
     window.location.reload();
@@ -60,6 +77,22 @@ const App = () => {
   return (
     <div style={styles.container}>
       <div style={styles.statusContainer}>
+        {/* Container for Logo and Rocket */}
+        <div style={styles.logoRocketContainer}>
+          {/* ChatGPT logo */}
+          <img src={chatGptLogo} alt="ChatGPT Logo" style={styles.logo} />
+
+          {/* Rocket animation */}
+          {showRocket && (
+            <Lottie options={rocketOptions} height={100} width={100} />
+          )}
+        </div>
+
+        {/* Creative Introduction Text */}
+        <p style={styles.introText}>
+          With the growing demand for ChatGPT, it's important to check whether it's available in real time. This tool helps you instantly know if ChatGPT is up or down, saving you time!
+        </p>
+
         <h1 style={styles.title}>Is ChatGPT Down?</h1>
         <p style={styles.statusText}>{status}</p>
 
@@ -76,6 +109,11 @@ const App = () => {
           Refresh
         </button>
       </div>
+
+      {/* Footer Text */}
+      <div style={styles.footerText}>
+        <p>© 2025 ChatGPT Status | Developed by Amirali Mohseni</p>
+      </div>
     </div>
   );
 };
@@ -84,6 +122,7 @@ const styles = {
   container: {
     fontFamily: 'Arial, sans-serif',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
@@ -93,7 +132,7 @@ const styles = {
   },
   statusContainer: {
     textAlign: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'white',  // Soft off-white color for better contrast
     padding: '40px',
     borderRadius: '15px',
     boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)',
@@ -103,19 +142,39 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  logoRocketContainer: {
+    display: 'flex',
+    alignItems: 'center', // Align logo and rocket horizontally
+    justifyContent: 'center',
+    marginBottom: '20px', // Space between logo/rocket and other content
+  },
+  logo: {
+    width: '40px',  // Adjust logo size to be smaller
+    height: 'auto',
+    marginRight: '15px', // Space between logo and rocket
+  },
   title: {
-    fontSize: '28px',
+    fontSize: '30px',
     marginBottom: '20px',
-    color: '#4e73df',
+    color: '#4e73df',  // Darker color for title
     fontWeight: 'bold',
     textTransform: 'uppercase',
     animation: 'fadeIn 2s ease-out',
+  },
+  introText: {
+    fontSize: '15px',
+    color: 'black',  // White text color for better contrast
+    marginBottom: '20px',
+    fontStyle: 'italic',
+    textAlign: 'center',
+    marginTop: '0',
+    maxWidth: '80%',
   },
   statusText: {
     fontSize: '24px',
     fontWeight: 'bold',
     marginBottom: '20px',
-    color: '#333',
+    color: '#333',  // Darker text color for status
     transition: 'all 0.3s ease',
   },
   loadingText: {
@@ -134,6 +193,15 @@ const styles = {
     cursor: 'pointer',
     transition: 'background-color 0.3s ease, transform 0.2s ease',
     marginTop: '20px',
+  },
+  footerText: {
+    backgroundColor: 'transparent',  // No background for footer
+    padding: '10px 0',
+    marginTop: '30px',
+    fontSize: '14px',
+    textAlign: 'center',
+    color: '#333',
+    width: '100%',
   },
 };
 
