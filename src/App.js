@@ -137,7 +137,8 @@ const styles = {
   logoRocketContainer: {
     textAlign: 'center',
     backgroundColor: 'transparent',  // Set background to transparent
-    padding: '15px',  // Reduced padding to make the container more compact
+    padding: '10px',  // Adjust padding to make the container more compact
+    marginTop: '50px',  // Add margin-top to move it down more
     borderRadius: '15px',
     boxShadow: '0 15px 30px rgba(0, 0, 0, 0)', // Keep shadow for visibility
     width: '200px', // Adjust width to fit the logo and rocket properly
