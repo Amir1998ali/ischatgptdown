@@ -52,6 +52,11 @@ const App = () => {
     }
   };
 
+  // Refresh page function
+  const refreshPage = () => {
+    window.location.reload();
+  };
+
   return (
     <div style={styles.container}>
       <div style={styles.statusContainer}>
@@ -59,12 +64,17 @@ const App = () => {
         <p style={styles.statusText}>{status}</p>
 
         {isUp === null ? (
-          <div>Loading...</div>
+          <div style={styles.loadingText}>Loading...</div>
         ) : isUp ? (
           <Lottie options={upOptions} height={200} width={200} />
         ) : (
           <Lottie options={downOptions} height={200} width={200} />
         )}
+
+        {/* Refresh Button */}
+        <button style={styles.refreshButton} onClick={refreshPage}>
+          Refresh
+        </button>
       </div>
     </div>
   );
@@ -77,26 +87,68 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
-    backgroundColor: '#f0f0f0',
+    background: 'linear-gradient(135deg, #a0c4ff, #ffb3b3)', // Calming gradient background
     margin: 0,
+    color: '#333',
   },
   statusContainer: {
     textAlign: 'center',
     backgroundColor: 'white',
-    padding: '30px',
-    borderRadius: '10px',
-    boxShadow: '0 0 15px rgba(0, 0, 0, 0.1)',
-    width: '300px',
+    padding: '40px',
+    borderRadius: '15px',
+    boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)',
+    width: '350px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
-    fontSize: '24px',
-    marginBottom: '15px',
+    fontSize: '28px',
+    marginBottom: '20px',
+    color: '#4e73df',
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    animation: 'fadeIn 2s ease-out',
   },
   statusText: {
-    fontSize: '20px',
+    fontSize: '24px',
     fontWeight: 'bold',
     marginBottom: '20px',
-  }
+    color: '#333',
+    transition: 'all 0.3s ease',
+  },
+  loadingText: {
+    fontSize: '20px',
+    fontStyle: 'italic',
+    color: '#aaa',
+    marginBottom: '20px',
+  },
+  refreshButton: {
+    backgroundColor: '#4e73df', // Button color matching the theme
+    color: 'white',
+    border: 'none',
+    padding: '10px 20px',
+    borderRadius: '5px',
+    fontSize: '16px',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease, transform 0.2s ease',
+    marginTop: '20px',
+  },
 };
+
+// Adding some keyframe animations for smooth fade-in effect
+const fadeInAnimation = `
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+`;
+
+document.styleSheets[0].insertRule(fadeInAnimation, 0);
 
 export default App;
