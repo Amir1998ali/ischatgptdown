@@ -71,6 +71,7 @@ const App = () => {
 
   // Refresh page function
   const refreshPage = () => {
+    // Simply reload the page
     window.location.reload();
   };
 
