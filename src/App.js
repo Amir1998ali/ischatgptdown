@@ -77,9 +77,9 @@ const App = () => {
 
   return (
     <div style={styles.container}>
-      <div style={styles.statusContainer}>
-        {/* Container for Logo and Rocket */}
-        <div style={styles.logoRocketContainer}>
+      {/* Logo and Rocket container with white background */}
+      <div style={styles.logoRocketContainer}>
+        <div style={styles.logoRocketInnerContainer}>
           {/* ChatGPT logo */}
           <img src={chatGptLogo} alt="ChatGPT Logo" style={styles.logo} />
 
@@ -88,7 +88,10 @@ const App = () => {
             <Lottie options={rocketOptions} height={100} width={100} />
           )}
         </div>
+      </div>
 
+      {/* Content container with separate background color */}
+      <div style={styles.statusContentContainer}>
         {/* Creative Introduction Text */}
         <p style={styles.introText}>
           With the growing demand for ChatGPT, it's important to check whether it's available in real time. This tool helps you instantly know if ChatGPT is up or down, saving you time!
@@ -131,9 +134,34 @@ const styles = {
     margin: 0,
     color: '#333',
   },
-  statusContainer: {
+  logoRocketContainer: {
     textAlign: 'center',
-    backgroundColor: 'white',  // Soft off-white color for better contrast
+    backgroundColor: 'transparent',  // Set background to transparent
+    padding: '15px',  // Reduced padding to make the container more compact
+    borderRadius: '15px',
+    boxShadow: '0 15px 30px rgba(0, 0, 0, 0)', // Keep shadow for visibility
+    width: '200px', // Adjust width to fit the logo and rocket properly
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logoRocketInnerContainer: {
+    display: 'flex',
+    alignItems: 'center', // Align logo and rocket horizontally
+    justifyContent: 'center',
+    backgroundColor: 'transparent', // White background for logo and rocket container
+    padding: '10px',
+    borderRadius: '10px',
+  },
+  logo: {
+    width: '40px',  // Adjust logo size to be smaller
+    height: 'auto',
+    marginRight: '15px', // Space between logo and rocket
+  },
+  statusContentContainer: {
+    textAlign: 'center',
+    backgroundColor: 'white',  // Light blue background for the content
     padding: '40px',
     borderRadius: '15px',
     boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)',
@@ -142,17 +170,6 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  logoRocketContainer: {
-    display: 'flex',
-    alignItems: 'center', // Align logo and rocket horizontally
-    justifyContent: 'center',
-    marginBottom: '20px', // Space between logo/rocket and other content
-  },
-  logo: {
-    width: '40px',  // Adjust logo size to be smaller
-    height: 'auto',
-    marginRight: '15px', // Space between logo and rocket
   },
   title: {
     fontSize: '30px',
