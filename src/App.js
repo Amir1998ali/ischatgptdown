@@ -100,18 +100,20 @@ const App = () => {
         <h1 style={styles.title}>Is ChatGPT Down?</h1>
         <p style={styles.statusText}>{status}</p>
 
-        {isUp === null ? (
-          <div style={styles.loadingText}>Loading...</div>
-        ) : isUp ? (
-          <Lottie options={upOptions} height={200} width={200} />
-        ) : (
-          <Lottie options={downOptions} height={200} width={200} />
-        )}
+        <div style={styles.animationContainer}>
+          {isUp === null ? (
+            <div style={styles.loadingText}>Loading...</div>
+          ) : isUp ? (
+            <Lottie options={upOptions} height={200} width={200} />
+          ) : (
+            <Lottie options={downOptions} height={200} width={200} />
+          )}
 
-        {/* Refresh Button */}
-        <button style={styles.refreshButton} onClick={refreshPage}>
-          Refresh
-        </button>
+          {/* Refresh Button */}
+          <button style={styles.refreshButton} onClick={refreshPage}>
+            Refresh
+          </button>
+        </div>
       </div>
 
       {/* Footer Text */}
@@ -168,13 +170,21 @@ const styles = {
     borderRadius: '15px',
     boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)',
     width: '100%',
-    maxWidth: '350px', // Limit the maximum width to 350px
+    maxWidth: '350px',
     margin: '0 15px',  // Add margin on the left and right for spacing
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  animationContainer: {
+    display: 'flex',
+    flexDirection: 'column',  // Stack button below the animation
+    justifyContent: 'center', // Center the content vertically
+    alignItems: 'center',     // Center the content horizontally
+    marginTop: '20px',        // Space between animation and button
+  },
+
   title: {
     fontSize: '30px',
     marginBottom: '20px',
@@ -214,8 +224,10 @@ const styles = {
     fontSize: '16px',
     cursor: 'pointer',
     transition: 'background-color 0.3s ease, transform 0.2s ease',
-    marginTop: '20px',
+    marginTop: '10px', // Add a little margin to separate the button from the animation
   },
+  
+  
   footerText: {
     backgroundColor: 'transparent',
     padding: '10px 0',
@@ -226,20 +238,5 @@ const styles = {
     width: '100%',
   },
 };
-
-
-// Adding some keyframe animations for smooth fade-in effect
-const fadeInAnimation = `
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-`;
-
-document.styleSheets[0].insertRule(fadeInAnimation, 0);
 
 export default App;
