@@ -133,15 +133,16 @@ const styles = {
     background: 'linear-gradient(135deg, #a0c4ff, #ffb3b3)', // Calming gradient background
     margin: 0,
     color: '#333',
+    padding: '10px', // Add some padding for spacing on smaller screens
   },
   logoRocketContainer: {
     textAlign: 'center',
     backgroundColor: 'transparent',  // Set background to transparent
-    padding: '10px',  // Adjust padding to make the container more compact
-    marginTop: '50px',  // Add margin-top to move it down more
+    padding: '10px',
+    marginTop: '50px',
     borderRadius: '15px',
-    boxShadow: '0 15px 30px rgba(0, 0, 0, 0)', // Keep shadow for visibility
-    width: '200px', // Adjust width to fit the logo and rocket properly
+    boxShadow: '0 15px 30px rgba(0, 0, 0, 0)',
+    width: '200px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -149,24 +150,26 @@ const styles = {
   },
   logoRocketInnerContainer: {
     display: 'flex',
-    alignItems: 'center', // Align logo and rocket horizontally
+    alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'transparent', // White background for logo and rocket container
+    backgroundColor: 'transparent',
     padding: '10px',
     borderRadius: '10px',
   },
   logo: {
-    width: '40px',  // Adjust logo size to be smaller
+    width: '40px',
     height: 'auto',
-    marginRight: '15px', // Space between logo and rocket
+    marginRight: '15px',
   },
   statusContentContainer: {
     textAlign: 'center',
-    backgroundColor: 'white',  // Light blue background for the content
-    padding: '40px',
+    backgroundColor: 'white',
+    padding: '20px',
     borderRadius: '15px',
     boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)',
-    width: '350px',
+    width: '100%',
+    maxWidth: '350px', // Limit the maximum width to 350px
+    margin: '0 15px',  // Add margin on the left and right for spacing
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -175,14 +178,14 @@ const styles = {
   title: {
     fontSize: '30px',
     marginBottom: '20px',
-    color: '#4e73df',  // Darker color for title
+    color: '#4e73df',
     fontWeight: 'bold',
     textTransform: 'uppercase',
     animation: 'fadeIn 2s ease-out',
   },
   introText: {
     fontSize: '15px',
-    color: 'black',  // White text color for better contrast
+    color: 'black',
     marginBottom: '20px',
     fontStyle: 'italic',
     textAlign: 'center',
@@ -193,7 +196,7 @@ const styles = {
     fontSize: '24px',
     fontWeight: 'bold',
     marginBottom: '20px',
-    color: '#333',  // Darker text color for status
+    color: '#333',
     transition: 'all 0.3s ease',
   },
   loadingText: {
@@ -203,7 +206,7 @@ const styles = {
     marginBottom: '20px',
   },
   refreshButton: {
-    backgroundColor: '#4e73df', // Button color matching the theme
+    backgroundColor: '#4e73df',
     color: 'white',
     border: 'none',
     padding: '10px 20px',
@@ -214,7 +217,7 @@ const styles = {
     marginTop: '20px',
   },
   footerText: {
-    backgroundColor: 'transparent',  // No background for footer
+    backgroundColor: 'transparent',
     padding: '10px 0',
     marginTop: '30px',
     fontSize: '14px',
@@ -223,6 +226,7 @@ const styles = {
     width: '100%',
   },
 };
+
 
 // Adding some keyframe animations for smooth fade-in effect
 const fadeInAnimation = `
